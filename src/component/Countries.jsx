@@ -17,7 +17,7 @@ function Countries({searchValue}) {
     return (
         <section className="py-3">
             <div className="container">
-                <div className="countries d-grid gap-3">{country.map(elem => <Country country={elem} />)}</div>
+                <div className="countries d-grid gap-3">{country.map((elem, index) => <Country key={index} country={elem} />)}</div>
             </div>
         </section>
     )
