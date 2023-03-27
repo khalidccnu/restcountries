@@ -20,11 +20,6 @@ function Countries({searchValue}) {
             });
     }, [searchValue]);
 
-    function showAllCountry({target: elem}) {
-        setAllCountry(country);
-        elem.parentElement.classList.add("d-none");
-    }
-
     return (
         <section className="py-3">
             <div className="container">
@@ -33,9 +28,9 @@ function Countries({searchValue}) {
                         <>
                         <div className="countries d-grid gap-3">{ptCountry.map((elem, index) => <Country key={index} country={elem} />)}</div>
                         {
-                            country.length > 9 ? (
+                            country.length > 9 && ptCountry.length !== country.length ? (
                                 <div className="mt-4 text-center">
-                                    <button role="button" className="btn btn-sm btn-success" onClick={e => showAllCountry(e)}>Show All</button>
+                                    <button role="button" className="btn btn-sm btn-success" onClick={_ => setAllCountry(country)}>Show All</button>
                                 </div>
                             ) : null
                         }
