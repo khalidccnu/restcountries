@@ -8,6 +8,16 @@ function Countries({searchValue}) {
     const [country, setCountry] = useState([]);
     const [ptCountry, setAllCountry] = useState([]);
 
+    function sortCountry() {
+        ptCountry.sort((a, b) => {
+            if (a.name.common > b.name.common) return 1;
+            else if (a.name.common < b.name.common) return -1;
+            else return 0;
+        });
+
+        setAllCountry([...ptCountry]);
+    }
+
     useEffect(_ => {
         !loading ? setLoading(true) : null;
 
@@ -37,6 +47,9 @@ function Countries({searchValue}) {
                     ) : (
                         ptCountry.length > 0 ? (
                             <>
+                                <div className="mb-4 text-center">
+                                    <button type="button" className="btn btn-sm btn-outline-secondary" onClick={sortCountry}>Sort By Name</button>
+                                </div>
                                 <div className="countries d-grid gap-3">{ptCountry.map((elem, index) => <Country key={index} country={elem} />)}</div>
                                 {
                                     country.length > 9 && ptCountry.length !== country.length ? (
